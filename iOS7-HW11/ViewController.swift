@@ -29,6 +29,50 @@ class ViewController: UIViewController {
         leftIcon: "lock"
     )
     
+    private lazy var loginButton: UIButton = createButton(
+        title: "Login",
+        backgroundColor: .systemOrange,
+        titleColor: .white,
+        cornerRadius: 25
+    )
+    
+    private lazy var forgotButton: UIButton = createButton(
+        title: "Forgot your password?",
+        backgroundColor: .clear,
+        titleColor: .white,
+        fontSize: 11
+    )
+    
+    private lazy var facebookButton: UIButton = createButton(
+        title: "Facebook",
+        backgroundColor: .systemOrange,
+        titleColor: .white,
+        cornerRadius: 15,
+        fontSize: 11
+    )
+    
+    private lazy var twitterButton: UIButton = createButton(
+        title: "Twitter",
+        backgroundColor: .systemOrange,
+        titleColor: .white,
+        cornerRadius: 15,
+        fontSize: 11
+    )
+    
+    private lazy var platformStack: UIStackView = createStack(
+        distribution: .fillEqually,
+        spacing: 20,
+        backgroundColor: .clear
+    )
+    
+    private lazy var signUpButton: UIButton = createButton(
+        title: "Sign up",
+        backgroundColor: .clear,
+        titleColor: .white,
+        fontSize: 11
+    )
+    
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -44,6 +88,13 @@ class ViewController: UIViewController {
         view.addSubview(loginLabel)
         view.addSubview(usernameField)
         view.addSubview(passwordField)
+        view.addSubview(loginButton)
+        view.addSubview(forgotButton)
+        view.addSubview(platformStack)
+        view.addSubview(signUpButton)
+        
+        platformStack.addArrangedSubview(facebookButton)
+        platformStack.addArrangedSubview(twitterButton)
     }
     
     private func setupLayout() {
@@ -59,8 +110,23 @@ class ViewController: UIViewController {
             passwordField.topAnchor.constraint(equalTo: usernameField.bottomAnchor, constant: 30),
             passwordField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             passwordField.widthAnchor.constraint(equalTo: usernameField.widthAnchor),
-            passwordField.heightAnchor.constraint(equalTo: usernameField.heightAnchor)
+            passwordField.heightAnchor.constraint(equalTo: usernameField.heightAnchor),
             
+            loginButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 50),
+            loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loginButton.widthAnchor.constraint(equalTo: passwordField.widthAnchor),
+            loginButton.heightAnchor.constraint(equalTo: passwordField.heightAnchor),
+            
+            forgotButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 10),
+            forgotButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            platformStack.topAnchor.constraint(equalTo: forgotButton.bottomAnchor, constant: 50),
+            platformStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            platformStack.widthAnchor.constraint(equalToConstant: 300),
+            platformStack.heightAnchor.constraint(equalToConstant: 30),
+            
+            signUpButton.topAnchor.constraint(equalTo: platformStack.bottomAnchor, constant: 50),
+            signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
     
@@ -89,6 +155,32 @@ class ViewController: UIViewController {
         return field
     }
     
+    private func createButton(title: String, backgroundColor: UIColor, titleColor: UIColor, cornerRadius: CGFloat = 0, fontSize: CGFloat = 17, shadowColor: CGColor = UIColor.black.cgColor, shadowOpacity: Float = 0.3, shadowOffset: CGSize = .zero, shadowRadius: CGFloat = 10) -> UIButton {
+        let button = UIButton()
+        button.setTitle(title, for: .normal)
+        button.setTitleColor(titleColor, for: .normal)
+        button.backgroundColor = backgroundColor
+        button.titleLabel?.font = UIFont.systemFont(ofSize: fontSize)
+        button.layer.cornerRadius = cornerRadius
+        button.layer.shadowColor = shadowColor
+        button.layer.shadowOpacity = shadowOpacity
+        button.layer.shadowOffset = shadowOffset
+        button.layer.shadowRadius = shadowRadius
+        button.layer.shouldRasterize = true
+        button.layer.rasterizationScale = UIScreen.main.scale
+        button.clipsToBounds = true
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }
+    
+    private func createStack(distribution: UIStackView.Distribution, spacing: CGFloat, backgroundColor: UIColor) -> UIStackView {
+        let stack = UIStackView()
+        stack.distribution = distribution
+        stack.spacing = spacing
+        stack.backgroundColor = backgroundColor
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }
     
 }
 
