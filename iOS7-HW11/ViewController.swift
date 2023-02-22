@@ -43,6 +43,13 @@ class ViewController: UIViewController {
         fontSize: 11
     )
     
+    private lazy var connectionStack: UIStackView = createStack(
+        axis: .horizontal,
+        distribution: .fillEqually,
+        spacing: 20,
+        backgroundColor: .clear
+    )
+    
     private lazy var facebookButton: UIButton = createButton(
         title: "Facebook",
         backgroundColor: .systemOrange,
@@ -59,16 +66,30 @@ class ViewController: UIViewController {
         fontSize: 11
     )
     
-    private lazy var platformStack: UIStackView = createStack(
-        distribution: .fillEqually,
-        spacing: 20,
+    private lazy var connectionLabel: UILabel = createLabel(
+        text: "or connect with",
+        allignment: .center,
+        color: .white,
+        fontSize: 11,
+        fontWeight: 0
+    )
+    
+    private lazy var signUpView: UIView = createView(
         backgroundColor: .clear
+    )
+    
+    private lazy var signUpLabel: UILabel = createLabel(
+        text: "Don't have account?",
+        allignment: .center,
+        color: .white,
+        fontSize: 11,
+        fontWeight: 0
     )
     
     private lazy var signUpButton: UIButton = createButton(
         title: "Sign up",
         backgroundColor: .clear,
-        titleColor: .white,
+        titleColor: .systemOrange,
         fontSize: 11
     )
     
@@ -90,11 +111,15 @@ class ViewController: UIViewController {
         view.addSubview(passwordField)
         view.addSubview(loginButton)
         view.addSubview(forgotButton)
-        view.addSubview(platformStack)
-        view.addSubview(signUpButton)
+        view.addSubview(connectionLabel)
+        view.addSubview(connectionStack)
+        view.addSubview(signUpView)
         
-        platformStack.addArrangedSubview(facebookButton)
-        platformStack.addArrangedSubview(twitterButton)
+        connectionStack.addArrangedSubview(facebookButton)
+        connectionStack.addArrangedSubview(twitterButton)
+        
+        signUpView.addSubview(signUpLabel)
+        signUpView.addSubview(signUpButton)
     }
     
     private func setupLayout() {
@@ -120,13 +145,25 @@ class ViewController: UIViewController {
             forgotButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 10),
             forgotButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            platformStack.topAnchor.constraint(equalTo: forgotButton.bottomAnchor, constant: 50),
-            platformStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            platformStack.widthAnchor.constraint(equalToConstant: 300),
-            platformStack.heightAnchor.constraint(equalToConstant: 30),
+            connectionLabel.topAnchor.constraint(equalTo: forgotButton.bottomAnchor, constant: 200),
+            connectionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            signUpButton.topAnchor.constraint(equalTo: platformStack.bottomAnchor, constant: 50),
-            signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            connectionStack.topAnchor.constraint(equalTo: connectionLabel.bottomAnchor, constant: 20),
+            connectionStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            connectionStack.widthAnchor.constraint(equalToConstant: 300),
+            connectionStack.heightAnchor.constraint(equalToConstant: 30),
+            
+            signUpView.topAnchor.constraint(equalTo: connectionStack.bottomAnchor, constant: 25),
+            signUpView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            signUpView.heightAnchor.constraint(equalTo: signUpButton.heightAnchor),
+            signUpView.widthAnchor.constraint(equalToConstant: 160),
+            
+            signUpLabel.leadingAnchor.constraint(equalTo: signUpView.leadingAnchor),
+            signUpLabel.centerYAnchor.constraint(equalTo: signUpView.centerYAnchor),
+            
+            signUpButton.leadingAnchor.constraint(equalTo: signUpLabel.trailingAnchor, constant: 10),
+            signUpButton.centerYAnchor.constraint(equalTo: signUpView.centerYAnchor)
+            
         ])
     }
     
@@ -173,13 +210,21 @@ class ViewController: UIViewController {
         return button
     }
     
-    private func createStack(distribution: UIStackView.Distribution, spacing: CGFloat, backgroundColor: UIColor) -> UIStackView {
+    private func createStack(axis: NSLayoutConstraint.Axis, distribution: UIStackView.Distribution, spacing: CGFloat, backgroundColor: UIColor) -> UIStackView {
         let stack = UIStackView()
+        stack.axis = axis
         stack.distribution = distribution
         stack.spacing = spacing
         stack.backgroundColor = backgroundColor
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
+    }
+    
+    private func createView(backgroundColor: UIColor) -> UIView {
+        let view = UIView()
+        view.backgroundColor = backgroundColor
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }
     
 }
