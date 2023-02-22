@@ -13,6 +13,7 @@
 		B22F563929A627C7004D7B41 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B22F563729A627C7004D7B41 /* Main.storyboard */; };
 		B22F563B29A627CB004D7B41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B22F563A29A627CB004D7B41 /* Assets.xcassets */; };
 		B22F563E29A627CB004D7B41 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B22F563C29A627CB004D7B41 /* LaunchScreen.storyboard */; };
+		B25F957C29A6413C005A43A2 /* UITextField+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25F957B29A6413C005A43A2 /* UITextField+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		B22F563A29A627CB004D7B41 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B22F563D29A627CB004D7B41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B22F563F29A627CB004D7B41 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B25F957B29A6413C005A43A2 /* UITextField+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				B22F563129A627C7004D7B41 /* AppDelegate.swift */,
 				B22F563329A627C7004D7B41 /* SceneDelegate.swift */,
 				B22F563529A627C7004D7B41 /* ViewController.swift */,
+				B25F957B29A6413C005A43A2 /* UITextField+Ext.swift */,
 				B22F563729A627C7004D7B41 /* Main.storyboard */,
 				B22F563A29A627CB004D7B41 /* Assets.xcassets */,
 				B22F563C29A627CB004D7B41 /* LaunchScreen.storyboard */,
@@ -141,6 +144,7 @@
 				B22F563629A627C7004D7B41 /* ViewController.swift in Sources */,
 				B22F563229A627C7004D7B41 /* AppDelegate.swift in Sources */,
 				B22F563429A627C7004D7B41 /* SceneDelegate.swift in Sources */,
+				B25F957C29A6413C005A43A2 /* UITextField+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
