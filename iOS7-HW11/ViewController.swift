@@ -12,6 +12,22 @@ class ViewController: UIViewController {
         fontWeight: 1
     )
     
+    private lazy var connectionLabel: UILabel = createLabel(
+        text: "or connect with",
+        allignment: .center,
+        color: .white,
+        fontSize: 11,
+        fontWeight: 0
+    )
+    
+    private lazy var signUpLabel: UILabel = createLabel(
+        text: "Don't have account?",
+        allignment: .center,
+        color: .white,
+        fontSize: 11,
+        fontWeight: 0
+    )
+    
     private lazy var usernameField: UITextField = createField(
         placeholder: "Username",
         backgroundColor: .white,
@@ -43,13 +59,6 @@ class ViewController: UIViewController {
         fontSize: 11
     )
     
-    private lazy var connectionStack: UIStackView = createStack(
-        axis: .horizontal,
-        distribution: .fillEqually,
-        spacing: 20,
-        backgroundColor: .clear
-    )
-    
     private lazy var facebookButton: UIButton = createButton(
         title: "Facebook",
         backgroundColor: .systemOrange,
@@ -66,26 +75,6 @@ class ViewController: UIViewController {
         fontSize: 11
     )
     
-    private lazy var connectionLabel: UILabel = createLabel(
-        text: "or connect with",
-        allignment: .center,
-        color: .white,
-        fontSize: 11,
-        fontWeight: 0
-    )
-    
-    private lazy var signUpView: UIView = createView(
-        backgroundColor: .clear
-    )
-    
-    private lazy var signUpLabel: UILabel = createLabel(
-        text: "Don't have account?",
-        allignment: .center,
-        color: .white,
-        fontSize: 11,
-        fontWeight: 0
-    )
-    
     private lazy var signUpButton: UIButton = createButton(
         title: "Sign up",
         backgroundColor: .clear,
@@ -93,6 +82,23 @@ class ViewController: UIViewController {
         fontSize: 11
     )
     
+    private lazy var connectionStack: UIStackView = createStack(
+        axis: .horizontal,
+        distribution: .fillEqually,
+        spacing: 20,
+        backgroundColor: .clear
+    )
+    
+    private lazy var authorizationStack: UIStackView = createStack(
+        axis: .vertical,
+        distribution: .fillEqually,
+        spacing: 20,
+        backgroundColor: .clear
+    )
+    
+    private lazy var signUpView: UIView = createView(
+        backgroundColor: .clear
+    )
     
     // MARK: - Lifecycle
     
@@ -107,13 +113,15 @@ class ViewController: UIViewController {
     
     private func setupHierarchy() {
         view.addSubview(loginLabel)
-        view.addSubview(usernameField)
-        view.addSubview(passwordField)
+        view.addSubview(authorizationStack)
         view.addSubview(loginButton)
         view.addSubview(forgotButton)
         view.addSubview(connectionLabel)
         view.addSubview(connectionStack)
         view.addSubview(signUpView)
+        
+        authorizationStack.addArrangedSubview(usernameField)
+        authorizationStack.addArrangedSubview(passwordField)
         
         connectionStack.addArrangedSubview(facebookButton)
         connectionStack.addArrangedSubview(twitterButton)
@@ -127,20 +135,15 @@ class ViewController: UIViewController {
             loginLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 75),
             loginLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            usernameField.topAnchor.constraint(equalTo: loginLabel.bottomAnchor, constant: 50),
-            usernameField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            usernameField.widthAnchor.constraint(equalToConstant: 250),
-            usernameField.heightAnchor.constraint(equalToConstant: 45),
+            authorizationStack.topAnchor.constraint(equalTo: loginLabel.bottomAnchor, constant: 50),
+            authorizationStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            authorizationStack.widthAnchor.constraint(equalToConstant: 250),
+            authorizationStack.heightAnchor.constraint(equalToConstant: 110),
             
-            passwordField.topAnchor.constraint(equalTo: usernameField.bottomAnchor, constant: 30),
-            passwordField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            passwordField.widthAnchor.constraint(equalTo: usernameField.widthAnchor),
-            passwordField.heightAnchor.constraint(equalTo: usernameField.heightAnchor),
-            
-            loginButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 50),
+            loginButton.topAnchor.constraint(equalTo: authorizationStack.bottomAnchor, constant: 50),
             loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            loginButton.widthAnchor.constraint(equalTo: passwordField.widthAnchor),
-            loginButton.heightAnchor.constraint(equalTo: passwordField.heightAnchor),
+            loginButton.widthAnchor.constraint(equalTo: authorizationStack.widthAnchor),
+            loginButton.heightAnchor.constraint(equalToConstant: 45),
             
             forgotButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 10),
             forgotButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -188,6 +191,7 @@ class ViewController: UIViewController {
         field.setLeftIcon(leftIcon)
         field.setRightIcon(rightIcon)
         field.clipsToBounds = true
+        field.autocapitalizationType = .none
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
     }
