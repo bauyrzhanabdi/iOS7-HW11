@@ -82,22 +82,34 @@ class ViewController: UIViewController {
         fontSize: 11
     )
     
-    private lazy var connectionStack: UIStackView = createStack(
+    private lazy var connectionContainer: UIStackView = createStack(
         axis: .horizontal,
         distribution: .fillEqually,
         spacing: 20,
         backgroundColor: .clear
     )
     
-    private lazy var authorizationStack: UIStackView = createStack(
+    private lazy var authorizationContainer: UIStackView = createStack(
         axis: .vertical,
         distribution: .fillEqually,
         spacing: 20,
         backgroundColor: .clear
     )
     
-    private lazy var signUpView: UIView = createView(
+    private lazy var signUpContainer: UIView = createView(
         backgroundColor: .clear
+    )
+    
+    private lazy var lineContainer: UIView = createView(
+        backgroundColor: .clear
+    )
+    
+    private lazy var leftLine: UIView = createView(
+        backgroundColor: .white
+    )
+    
+    private lazy var rightLine: UIView = createView(
+        backgroundColor: .white
     )
     
     // MARK: - Lifecycle
@@ -113,21 +125,25 @@ class ViewController: UIViewController {
     
     private func setupHierarchy() {
         view.addSubview(loginLabel)
-        view.addSubview(authorizationStack)
         view.addSubview(loginButton)
         view.addSubview(forgotButton)
-        view.addSubview(connectionLabel)
-        view.addSubview(connectionStack)
-        view.addSubview(signUpView)
+        view.addSubview(authorizationContainer)
+        view.addSubview(lineContainer)
+        view.addSubview(connectionContainer)
+        view.addSubview(signUpContainer)
         
-        authorizationStack.addArrangedSubview(usernameField)
-        authorizationStack.addArrangedSubview(passwordField)
+        authorizationContainer.addArrangedSubview(usernameField)
+        authorizationContainer.addArrangedSubview(passwordField)
         
-        connectionStack.addArrangedSubview(facebookButton)
-        connectionStack.addArrangedSubview(twitterButton)
+        connectionContainer.addArrangedSubview(facebookButton)
+        connectionContainer.addArrangedSubview(twitterButton)
         
-        signUpView.addSubview(signUpLabel)
-        signUpView.addSubview(signUpButton)
+        signUpContainer.addSubview(signUpLabel)
+        signUpContainer.addSubview(signUpButton)
+        
+        lineContainer.addSubview(leftLine)
+        lineContainer.addSubview(connectionLabel)
+        lineContainer.addSubview(rightLine)
     }
     
     private func setupLayout() {
@@ -135,37 +151,53 @@ class ViewController: UIViewController {
             loginLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 75),
             loginLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            authorizationStack.topAnchor.constraint(equalTo: loginLabel.bottomAnchor, constant: 50),
-            authorizationStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            authorizationStack.widthAnchor.constraint(equalToConstant: 250),
-            authorizationStack.heightAnchor.constraint(equalToConstant: 110),
+            authorizationContainer.topAnchor.constraint(equalTo: loginLabel.bottomAnchor, constant: 50),
+            authorizationContainer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            authorizationContainer.widthAnchor.constraint(equalToConstant: 250),
+            authorizationContainer.heightAnchor.constraint(equalToConstant: 110),
             
-            loginButton.topAnchor.constraint(equalTo: authorizationStack.bottomAnchor, constant: 50),
+            loginButton.topAnchor.constraint(equalTo: authorizationContainer.bottomAnchor, constant: 50),
             loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            loginButton.widthAnchor.constraint(equalTo: authorizationStack.widthAnchor),
+            loginButton.widthAnchor.constraint(equalTo: authorizationContainer.widthAnchor),
             loginButton.heightAnchor.constraint(equalToConstant: 45),
             
             forgotButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 10),
             forgotButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            connectionLabel.topAnchor.constraint(equalTo: forgotButton.bottomAnchor, constant: 200),
-            connectionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            lineContainer.topAnchor.constraint(equalTo: forgotButton.bottomAnchor, constant: 200),
+            lineContainer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            lineContainer.widthAnchor.constraint(equalTo: connectionContainer.widthAnchor),
+            lineContainer.heightAnchor.constraint(equalTo: connectionLabel.heightAnchor),
             
-            connectionStack.topAnchor.constraint(equalTo: connectionLabel.bottomAnchor, constant: 20),
-            connectionStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            connectionStack.widthAnchor.constraint(equalToConstant: 300),
-            connectionStack.heightAnchor.constraint(equalToConstant: 30),
+            leftLine.leadingAnchor.constraint(equalTo: lineContainer.leadingAnchor),
+            leftLine.trailingAnchor.constraint(equalTo: connectionLabel.leadingAnchor),
+            leftLine.centerYAnchor.constraint(equalTo: lineContainer.centerYAnchor),
+            leftLine.heightAnchor.constraint(equalToConstant: 1),
             
-            signUpView.topAnchor.constraint(equalTo: connectionStack.bottomAnchor, constant: 25),
-            signUpView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            signUpView.heightAnchor.constraint(equalTo: signUpButton.heightAnchor),
-            signUpView.widthAnchor.constraint(equalToConstant: 160),
+            rightLine.leadingAnchor.constraint(equalTo: connectionLabel.trailingAnchor),
+            rightLine.trailingAnchor.constraint(equalTo: lineContainer.trailingAnchor),
+            rightLine.centerYAnchor.constraint(equalTo: lineContainer.centerYAnchor),
+            rightLine.heightAnchor.constraint(equalToConstant: 1),
             
-            signUpLabel.leadingAnchor.constraint(equalTo: signUpView.leadingAnchor),
-            signUpLabel.centerYAnchor.constraint(equalTo: signUpView.centerYAnchor),
+            connectionLabel.centerXAnchor.constraint(equalTo: lineContainer.centerXAnchor),
+            connectionLabel.centerYAnchor.constraint(equalTo: lineContainer.centerYAnchor),
+            connectionLabel.widthAnchor.constraint(equalToConstant: 100),
+            
+            connectionContainer.topAnchor.constraint(equalTo: lineContainer.bottomAnchor, constant: 20),
+            connectionContainer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            connectionContainer.widthAnchor.constraint(equalToConstant: 300),
+            connectionContainer.heightAnchor.constraint(equalToConstant: 30),
+            
+            signUpContainer.topAnchor.constraint(equalTo: connectionContainer.bottomAnchor, constant: 25),
+            signUpContainer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            signUpContainer.heightAnchor.constraint(equalTo: signUpButton.heightAnchor),
+            signUpContainer.widthAnchor.constraint(equalToConstant: 160),
+            
+            signUpLabel.leadingAnchor.constraint(equalTo: signUpContainer.leadingAnchor),
+            signUpLabel.centerYAnchor.constraint(equalTo: signUpContainer.centerYAnchor),
             
             signUpButton.leadingAnchor.constraint(equalTo: signUpLabel.trailingAnchor, constant: 10),
-            signUpButton.centerYAnchor.constraint(equalTo: signUpView.centerYAnchor)
+            signUpButton.centerYAnchor.constraint(equalTo: signUpContainer.centerYAnchor)
             
         ])
     }
