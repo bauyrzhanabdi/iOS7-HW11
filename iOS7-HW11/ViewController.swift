@@ -116,7 +116,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBlue
+        setupBackground()
         setupHierarchy()
         setupLayout()
     }
@@ -202,6 +202,12 @@ class ViewController: UIViewController {
         ])
     }
     
+    func setupBackground() {
+        guard let backgroundImage = UIImage(named: "background.jpeg") else { return }
+        let backgroundColor = UIColor(patternImage: backgroundImage)
+        view.backgroundColor = backgroundColor
+    }
+    
     // MARK: - Methods
     
     private func createLabel(text: String, allignment: NSTextAlignment, color: UIColor, fontSize: CGFloat, fontWeight: CGFloat) -> UILabel {
@@ -262,7 +268,6 @@ class ViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }
-    
 }
 
 
