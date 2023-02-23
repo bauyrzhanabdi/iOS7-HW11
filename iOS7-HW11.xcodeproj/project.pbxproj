@@ -14,6 +14,7 @@
 		B22F563B29A627CB004D7B41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B22F563A29A627CB004D7B41 /* Assets.xcassets */; };
 		B22F563E29A627CB004D7B41 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B22F563C29A627CB004D7B41 /* LaunchScreen.storyboard */; };
 		B25F957C29A6413C005A43A2 /* UITextField+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25F957B29A6413C005A43A2 /* UITextField+Ext.swift */; };
+		B25F957E29A77AB0005A43A2 /* background.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B25F957D29A77AAF005A43A2 /* background.jpeg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		B22F563D29A627CB004D7B41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B22F563F29A627CB004D7B41 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B25F957B29A6413C005A43A2 /* UITextField+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Ext.swift"; sourceTree = "<group>"; };
+		B25F957D29A77AAF005A43A2 /* background.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpeg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				B22F563A29A627CB004D7B41 /* Assets.xcassets */,
 				B22F563C29A627CB004D7B41 /* LaunchScreen.storyboard */,
 				B22F563F29A627CB004D7B41 /* Info.plist */,
+				B25F957D29A77AAF005A43A2 /* background.jpeg */,
 			);
 			path = "iOS7-HW11";
 			sourceTree = "<group>";
@@ -131,6 +134,7 @@
 				B22F563E29A627CB004D7B41 /* LaunchScreen.storyboard in Resources */,
 				B22F563B29A627CB004D7B41 /* Assets.xcassets in Resources */,
 				B22F563929A627C7004D7B41 /* Main.storyboard in Resources */,
+				B25F957E29A77AB0005A43A2 /* background.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
